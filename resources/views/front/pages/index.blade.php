@@ -228,16 +228,7 @@
                             </svg>
                         </button>
 
-                        <!-- Dots chỉ báo -->
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-2 z-10"
-                            x-show="totalPostSlides > 1">
-                            <template x-for="i in totalPostSlides" :key="i">
-                                <button @click="goTo(i - 1); clearInterval(timer)"
-                                    class="w-3 h-3 rounded-full transition-all"
-                                    :class="currentPostSlide === i - 1 ? 'bg-[#43B14B] scale-110' :
-                                        'bg-gray-300 hover:bg-gray-400'"></button>
-                            </template>
-                        </div>
+                        
                     </div>
                 @else
                     <div class="min-w-full p-4 text-center text-gray-500 bg-gray-50 rounded-lg">
@@ -246,7 +237,7 @@
                 @endif
             </main>
 
-
+            {{-- Newest Post Sidebar --}}
             <aside class="w-full lg:w-3/12 flex flex-col">
                 <h2 class="bg-[#43b14b] text-white text-center text-lg font-semibold py-4 rounded-t-xl uppercase">Tin mới
                     nhất

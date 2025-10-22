@@ -118,14 +118,14 @@
                     <a class="font-medium hover:text-[#43b14b]" href="{{ route('introduce') }}">Giới
                         thiệu</a>
 
-                    {!! appdevs_dropdown() !!}
+                    {!! services_dropdown() !!}
 
                     <a href="{{ route('category_posts', 'dao-tao') }}"
                         class="font-medium inline-flex items-center gap-1 py-2 hover:text-[#43b14b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#43b14b]/40 rounded-lg whitespace-nowrap">
                         ĐÀO TẠO
                     </a>
 
-                    {!! webtutorials_dropdown() !!}
+                    {!! knowledge_dropdown() !!}
 
                     <a href="{{ route('category_posts', 'tin-tuc') }}" class="font-medium hover:text-[#43b14b]">Tin
                         tức</a>
@@ -138,56 +138,34 @@
                         hệ</a>
                 </nav>
             </div>
+
+            {{-- Mobile drawer --}}
+
             <div id="drawer" class="hidden md:hidden pb-3 border-t border-slate-200">
                 <div class="pt-3 grid gap-2">
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="/">Trang chủ</a>
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="{{ route('introduce') }}">Giới thiệu</a>
-                    {{-- <details class="px-3 py-2 rounded-lg">
-                        <summary class="cursor-pointer list-none">Dịch
-                            vụ</summary>
-                        <div class="mt-2 pl-3 space-y-1">
-                            <a href="#" class="block py-1">Bảo hộ nhãn hiệu
-                                & bản quyền</a>
-                            <a href="#" class="block py-1">Thay đổi GPKD</a>
-                            <a href="#" class="block py-1">Tư vấn luật thuế,
-                                kế toán</a>
-                            <a href="#" class="block py-1">Hoàn thuế GTGT,
-                                TNCN</a>
-                            <a href="#" class="block py-1">Báo cáo tài
-                                chính</a>
-                            <a href="#" class="block py-1">Kế toán nội
-                                bộ</a>
-                            <a href="#" class="block py-1">Kế toán thuế</a>
-                            <a href="#" class="block py-1">Rà soát rủi ro
-                                quyết toán</a>
-                        </div>
-                    </details> --}}
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="#">Đào tạo</a>
-                    <details class="px-3 py-2 rounded-lg">
-                        <summary class="cursor-pointer list-none">Kiến
-                            thức</summary>
-                        <div class="mt-2 pl-3 space-y-1">
-                            <a href="#" class="block py-1">Thuế thu nhập
-                                doanh nghiệp</a>
-                            <a href="#" class="block py-1">Thuế giá trị gia
-                                tăng</a>
-                            <a href="#" class="block py-1">Thuế thu nhập cá
-                                nhân</a>
-                            <a href="#" class="block py-1">Thuế nhà thầu -
-                                Xuất nhập khẩu</a>
-                            <a href="#" class="block py-1">Thuế tiêu thụ đặc
-                                biệt - Thuế tài nguyên</a>
-                            <a href="#" class="block py-1">Lao động - Bảo
-                                hiểm xã hội</a>
-                            <a href="#" class="block py-1">Kế toán - Kiểm
-                                toán</a>
-                            <a href="#" class="block py-1">Hóa đơn điện
-                                tử</a>
-                        </div>
-                    </details>
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="#">Tin tức</a>
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="#">Văn bản pháp luật</a>
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="#">Liên hệ</a>
+                    <a href="/"
+                        class="px-4 py-2 rounded-xl font-semibold tracking-wide uppercase text-slate-700 
+          hover:text-white hover:bg-[#43b14b] transition-all duration-300 ease-in-out">
+                        Trang chủ
+                    </a>
+                    <a class="px-4 py-2 rounded-xl font-semibold tracking-wide uppercase text-slate-700 
+          hover:text-white hover:bg-[#43b14b] transition-all duration-300 ease-in-out"
+                        href="{{ route('introduce') }}">Giới
+                        thiệu</a>
+                    {!! services_dropdown_mobile() !!}
+                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50 uppercase"
+                        href="{{ route('category_posts', 'dao-tao') }}">Đào tạo</a>
+                    {!! knowledge_dropdown_mobile() !!}
+
+                    <a class="px-4 py-2 rounded-xl font-semibold tracking-wide uppercase text-slate-700 
+          hover:text-white hover:bg-[#43b14b] transition-all duration-300 ease-in-out"
+                        href="{{ route('category_posts', 'tin-tuc') }}">Tin tức</a>
+                    <a class="px-4 py-2 rounded-xl font-semibold tracking-wide uppercase text-slate-700 
+          hover:text-white hover:bg-[#43b14b] transition-all duration-300 ease-in-out"
+                        href="{{ route('category_posts', 'van-ban-phap-luat') }}">Văn bản pháp luật</a>
+                    <a class="px-4 py-2 rounded-xl font-semibold tracking-wide uppercase text-slate-700 
+          hover:text-white hover:bg-[#43b14b] transition-all duration-300 ease-in-out"
+                        href="{{ route('contact') }}">Liên hệ</a>
                 </div>
             </div>
         </div>
@@ -258,30 +236,18 @@
                 <div>
                     <h4 class="font-semibold text-white">Thông tin thêm</h4>
                     <ul class="mt-4 space-y-2 text-sm">
-                        <li><a class="hover:underline" href="#">Trang
+                        <li><a class="hover:underline" href="/">Trang
                                 chủ</a></li>
-                        <li><a class="hover:underline" href="#">Giới
+                        <li><a class="hover:underline" href="{{ route('introduce') }}">Giới
                                 thiệu</a></li>
-                        <li><a class="hover:underline" href="#">Tin
+                        <li><a class="hover:underline" href="{{ route('category_posts', 'tin-tuc') }}">Tin
                                 tức</a></li>
-                        <li><a class="hover:underline" href="#">Liên
+                        <li><a class="hover:underline" href="{{ route('contact') }}">Liên
                                 hệ</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-white">Dịch vụ</h4>
-                    <ul class="mt-4 space-y-2 text-sm">
-                        <li><a class="hover:underline" href="#">Luật lao
-                                động & bảo hiểm</a></li>
-                        <li><a class="hover:underline" href="#">Luật Doanh
-                                nghiệp</a></li>
-                        <li><a class="hover:underline" href="#">Thuế doanh
-                                nghiệp</a></li>
-                        <li><a class="hover:underline" href="#">Kế toán tổng
-                                hợp</a></li>
-                        <li><a class="hover:underline" href="#">Rà soát rủi
-                                ro thuế</a></li>
-                    </ul>
+                    {!! footer_services_link() !!}
                 </div>
                 <div>
                     <h4 class="font-semibold text-white">Fanpage</h4>
@@ -294,44 +260,10 @@
         </div>
     </footer>
     <button id="backToTop"
-        class="fixed bottom-6 right-6 hidden items-center justify-center w-10 h-10 rounded-full bg-brand-600 text-white shadow-soft hover:bg-brand-700"
-        aria-label="Về đầu trang">↑</button>
+        class="fixed bottom-6 right-6 hidden items-center justify-center w-10 h-10 rounded-full bg-[#059669] text-white shadow hover:bg-[#047857]"
+        style="box-shadow: 0 10px 30px -12px rgba(0,0,0,.15)" aria-label="Về đầu trang">↑</button>
     @stack('script')
     <script src="/front/js/script.js" defer></script>
-    <!-- Tailwind CDN -->
-    <script>
-        tailwind = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            200: '#a7f3d0',
-                            300: '#6ee7b7',
-                            400: '#34d399',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b'
-                        }
-                    },
-                    boxShadow: {
-                        soft: '0 10px 30px -12px rgba(0,0,0,.15)',
-                        card: '0 6px 20px -8px rgba(0,0,0,.12)'
-                    }
-                }
-            }
-        }
-
-        document.getElementById('dropdownBtn').addEventListener('click', () => {
-            const menu = document.getElementById('dropdownMenu');
-            menu.classList.toggle('opacity-100');
-            menu.classList.toggle('visible');
-            menu.classList.toggle('translate-y-0');
-        });
-    </script>
     <script src="/front/plugins/jQuery/jquery.min.js"></script>
     <script src="/extra-assets/ijabo/js/ijabo.min.js"></script>
     <script src="/front/plugins/bootstrap/bootstrap.min.js"></script>

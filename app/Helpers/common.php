@@ -96,12 +96,11 @@ if (!function_exists('navigations')) {
     }
 }
 
-if (!function_exists('appdevs_dropdown')) {
-    function appdevs_dropdown()
+if (!function_exists('services_dropdown')) {
+    function services_dropdown()
     {
         $html = '';
 
-        // Lấy parent category có tên APP DEVS
         $service = ParentCategory::where('name', 'DỊCH VỤ')
             ->whereHas('children', function ($q) {
                 $q->whereHas('posts');
@@ -147,25 +146,71 @@ if (!function_exists('appdevs_dropdown')) {
     }
 }
 
-if (!function_exists('webtutorials_dropdown')) {
-    function webtutorials_dropdown()
+
+//=========================WORKING HERE=========================
+
+if (!function_exists('services_dropdown_mobile')) {
+    function services_dropdown_mobile()
     {
         $html = '';
-
-        // Lấy parent category có tên WEB TUTORIALS
-        $webTutorials = ParentCategory::where('name', 'KIẾN THỨC')
+        $service = ParentCategory::where('name', 'DỊCH VỤ')
             ->whereHas('children', function ($q) {
                 $q->whereHas('posts');
             })
             ->first();
 
-        if ($webTutorials) {
+        if ($service) {
+            $html .= '                    
+                                    <details
+                        class="group relative px-4 py-2 rounded-xl transition-all duration-200 hover:bg-emerald-50">
+                        <summary
+                            class="cursor-pointer list-none uppercase font-semibold text-slate-700 
+                    flex items-center justify-between hover:text-[#43b14b]">
+                            ' . $service->name . '
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="w-4 h-4 ml-2 transition-transform duration-300 group-open:rotate-180 text-[#43b14b]"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+
+                        <div class="mt-2 pl-3 space-y-1">
+                ';
+
+            foreach ($service->children as $category) {
+                if ($category->posts->count() > 0) {
+                    $html .= '
+                    <a href="' . route('category_posts', $category->slug) . '" class="block py-1.5 text-slate-600 hover:text-[#43b14b] transition-all duration-200">' . $category->name . '</a>';
+                }
+            }
+            $html .= '
+                    </div>
+                </details>
+            ';
+        }
+
+        return $html;
+    }
+}
+
+if (!function_exists('knowledge_dropdown')) {
+    function knowledge_dropdown()
+    {
+        $html = '';
+
+        $knowledge  = ParentCategory::where('name', 'KIẾN THỨC')
+            ->whereHas('children', function ($q) {
+                $q->whereHas('posts');
+            })
+            ->first();
+
+        if ($knowledge) {
             $html .= '
                 <div class="relative group">
                     <button
                         class="font-medium inline-flex items-center gap-1 py-2 hover:text-[#43b14b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#43b14b]/40 rounded-lg uppercase whitespace-nowrap"
                         aria-haspopup="true">
-                        ' . $webTutorials->name . '
+                        ' . $knowledge->name . '
                         <svg class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
                             viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"
@@ -180,7 +225,7 @@ if (!function_exists('webtutorials_dropdown')) {
                             class="min-w-[260px] bg-white border border-slate-200 border-t-2 border-t-green-400 shadow-xl ring-1 ring-black/5 p-2 text-sm rounded-lg">
             ';
 
-            foreach ($webTutorials->children as $category) {
+            foreach ($knowledge->children as $category) {
                 if ($category->posts) {
                     $html .= '
                         <a href="' . route('category_posts', $category->slug) . '"
@@ -201,15 +246,47 @@ if (!function_exists('webtutorials_dropdown')) {
     }
 }
 
-if (!function_exists('flutter_link')) {
-    function flutter_link()
+if (!function_exists('knowledge_dropdown_mobile')) {
+    function knowledge_dropdown_mobile()
     {
-        return '
-            <a href="' . route('category_posts', 'ĐÀO TẠO') . '"
-               class="font-medium inline-flex items-center gap-1 py-2 hover:text-[#43b14b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#43b14b]/40 rounded-lg whitespace-nowrap">
-               ĐÀO TẠO
-            </a>
-        ';
+        $html = '';
+        $knowledge = ParentCategory::where('name', 'KIẾN THỨC')
+            ->whereHas('children', function ($q) {
+                $q->whereHas('posts');
+            })
+            ->first();
+
+        if ($knowledge) {
+            $html .= '                    
+                                    <details
+                        class="group relative px-4 py-2 rounded-xl transition-all duration-200 hover:bg-emerald-50">
+                        <summary
+                            class="cursor-pointer list-none uppercase font-semibold text-slate-700 
+                    flex items-center justify-between hover:text-[#43b14b]">
+                            ' . $knowledge->name . '
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="w-4 h-4 ml-2 transition-transform duration-300 group-open:rotate-180 text-[#43b14b]"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+
+                        <div class="mt-2 pl-3 space-y-1">
+                ';
+
+            foreach ($knowledge->children as $category) {
+                if ($category->posts->count() > 0) {
+                    $html .= '
+                    <a href="' . route('category_posts', $category->slug) . '" class="block py-1.5 text-slate-600 hover:text-[#43b14b] transition-all duration-200">' . $category->name . '</a>';
+                }
+            }
+            $html .= '
+                    </div>
+                </details>
+            ';
+        }
+
+        return $html;
     }
 }
 
@@ -224,6 +301,33 @@ if (!function_exists('words')) {
     function words($value, $words = 15, $end = '...')
     {
         return Str::words(strip_tags($value), $words, $end);
+    }
+}
+
+if (!function_exists('footer_services_link')) {
+    function footer_services_link()
+    {
+        $html = '';
+        $service = ParentCategory::where('name', 'DỊCH VỤ')
+            ->whereHas('children', function ($q) {
+                $q->whereHas('posts');
+            })
+            ->first();
+
+        if ($service) {
+            $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
+                <ul class="mt-4 space-y-2 text-sm">';
+
+            foreach ($service->children as $category) {
+                if ($category->posts->count() > 0) {
+                    $html .= '
+                            <li><a class="hover:underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
+                    ';
+                }
+            }
+            $html .= '</ul>';
+        }
+        return $html;
     }
 }
 
