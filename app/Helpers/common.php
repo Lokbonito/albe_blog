@@ -131,7 +131,7 @@ if (!function_exists('services_dropdown')) {
                 if ($category->posts->count() > 0) {
                     $html .= '
                         <a href="' . route('category_posts', $category->slug) . '"
-                            class="block px-3 py-2 font-medium text-slate-500 hover:text-[#43b14b] border-b border-b-gray-200 normal-case">'
+                            class="block px-3 py-2 font-medium text-slate-500 hover:text-[#43b14b] transition-colors duration-200 ease-in-out !no-underline normal-case">'
                         . $category->name .
                         '</a>';
                 }
@@ -229,7 +229,7 @@ if (!function_exists('knowledge_dropdown')) {
                 if ($category->posts) {
                     $html .= '
                         <a href="' . route('category_posts', $category->slug) . '"
-                            class="block px-3 py-2 font-medium text-slate-500 hover:text-[#43b14b] border-b border-b-gray-200 normal-case">'
+                            class="block px-3 py-2 font-medium text-slate-500 hover:text-[#43b14b] transition-colors duration-200 ease-in-out !no-underline normal-case">'
                         . $category->name .
                         '</a>';
                 }

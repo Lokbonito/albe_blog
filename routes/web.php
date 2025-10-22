@@ -7,14 +7,14 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
 
 Route::get('/', [BlogController::class, 'index'])->name('home');
-Route::get('/introduce', [BlogController::class, 'introduce'])->name('introduce');
-Route::get('/post/{slug}', [BlogController::class, 'readPost'])->name('read_post');
-Route::get('/posts/category/{slug}', [BlogController::class, 'categoryPosts'])->name('category_posts');
-Route::get('/posts/author/{username}', [BlogController::class, 'authorPosts'])->name('author_posts');
-Route::get('/posts/tag/{any}', [BlogController::class, 'tagPosts'])->name('tag_posts');
-Route::get('/search', [BlogController::class, 'searchPosts'])->name('search_posts');
-Route::get('/contact', [BlogController::class, 'contactPage'])->name('contact');
-Route::post('/contact', [BlogController::class, 'sendEmail'])->name('send_email')->middleware('throttle:5,1');
+Route::get('/gioi-thieu', [BlogController::class, 'introduce'])->name('introduce');
+Route::get('/bai-viet/{slug}', [BlogController::class, 'readPost'])->name('read_post');
+Route::get('/bai-viet/the-loai/{slug}', [BlogController::class, 'categoryPosts'])->name('category_posts');
+Route::get('/bai-viet/tac-gia/{username}', [BlogController::class, 'authorPosts'])->name('author_posts');
+Route::get('/bai-viet/tag/{any}', [BlogController::class, 'tagPosts'])->name('tag_posts');
+Route::get('/tim-kiem', [BlogController::class, 'searchPosts'])->name('search_posts');
+Route::get('/lien-he', [BlogController::class, 'contactPage'])->name('contact');
+Route::post('/lien-he', [BlogController::class, 'sendEmail'])->name('send_email')->middleware('throttle:5,1');
 
 //TEST ROUTES
 Route::view('/example-page', 'example-page');
