@@ -188,19 +188,19 @@
                                                 <div class="p-4 space-y-2 flex-1 flex flex-col">
                                                     @if ($post->post_category)
                                                         <a href="{{ route('category_posts', $post->post_category->slug) }}"
-                                                            class="text-xs text-green-700 font-semibold uppercase hover:underline">
+                                                            class="text-xs text-green-700 font-semibold uppercase !no-underline">
                                                             {{ $post->post_category->name }}
                                                         </a>
                                                     @endif
                                                     <h3 class="text-lg font-bold flex-grow">
                                                         <a href="{{ route('read_post', $post->slug) }}"
-                                                            class="hover:text-green-700 line-clamp-2">{{ $post->title }}</a>
+                                                            class="hover:text-green-700 line-clamp-2 !no-underline">{{ $post->title }}</a>
                                                     </h3>
                                                     <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed py-2">
                                                         {!! Str::limit(strip_tags($post->excerpt ?? $post->content), 150) !!}
                                                     </p>
                                                     <a href="{{ route('read_post', $post->slug) }}"
-                                                        class="inline-flex items-center gap-1 text-green-700 font-semibold hover:underline text-sm mt-auto">
+                                                        class="inline-flex items-center gap-1 text-green-700 font-semibold hover:underline text-sm mt-auto !no-underline">
                                                         Xem thêm →
                                                     </a>
                                                 </div>
@@ -228,7 +228,7 @@
                             </svg>
                         </button>
 
-                        
+
                     </div>
                 @else
                     <div class="min-w-full p-4 text-center text-gray-500 bg-gray-50 rounded-lg">
@@ -246,7 +246,7 @@
                     <ul class="divide-y border rounded-b-xl flex-grow">
                         @foreach ($posts->take(5) as $latestPost)
                             <li><a href="{{ route('read_post', $latestPost->slug) }}"
-                                    class="block p-4 hover:bg-gray-50 text-sm font-medium truncate uppercase"
+                                    class="block p-4 hover:bg-gray-50 hover:text-[#43b14b] text-sm font-medium truncate uppercase !no-underline"
                                     title="{{ $latestPost->title }}">{{ $latestPost->title }}</a></li>
                         @endforeach
                     </ul>

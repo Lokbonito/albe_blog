@@ -321,7 +321,7 @@ if (!function_exists('footer_services_link')) {
             foreach ($service->children as $category) {
                 if ($category->posts->count() > 0) {
                     $html .= '
-                            <li><a class="hover:underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
+                            <li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
                     ';
                 }
             }

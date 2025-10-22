@@ -111,30 +111,43 @@
                     </svg>
                     <span>Menu</span>
                 </button>
+
                 <nav id="nav"
                     class="hidden md:flex items-center gap-6 text-[#336E4C] uppercase whitespace-nowrap">
-                    <a class="font-medium hover:text-[#43b14b]" href="/">Trang chủ
+                    <a href="/"
+                        class="font-medium !no-underline decoration-none border-b-0 focus:outline-none
+          hover:text-[#43b14b] transition-colors duration-200 ease-in-out">
+                        Trang chủ
                     </a>
-                    <a class="font-medium hover:text-[#43b14b]" href="{{ route('introduce') }}">Giới
+
+                    <a class="font-medium !no-underline decoration-none border-b-0 focus:outline-none
+          hover:text-[#43b14b] transition-colors duration-200 ease-in-out"
+                        href="{{ route('introduce') }}">Giới
                         thiệu</a>
 
                     {!! services_dropdown() !!}
 
                     <a href="{{ route('category_posts', 'dao-tao') }}"
-                        class="font-medium inline-flex items-center gap-1 py-2 hover:text-[#43b14b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#43b14b]/40 rounded-lg whitespace-nowrap">
+                        class="font-medium !no-underline decoration-none border-b-0 focus:outline-none
+          hover:text-[#43b14b] transition-colors duration-200 ease-in-outwhitespace-nowrap">
                         ĐÀO TẠO
                     </a>
 
                     {!! knowledge_dropdown() !!}
 
-                    <a href="{{ route('category_posts', 'tin-tuc') }}" class="font-medium hover:text-[#43b14b]">Tin
+                    <a href="{{ route('category_posts', 'tin-tuc') }}"
+                        class="font-medium !no-underline decoration-none border-b-0 focus:outline-none
+          hover:text-[#43b14b] transition-colors duration-200 ease-in-out">Tin
                         tức</a>
                     <a href="{{ route('category_posts', 'van-ban-phap-luat') }}"
-                        class="font-medium hover:text-[#43b14b]">Văn
+                        class="font-medium !no-underline decoration-none border-b-0 focus:outline-none
+          hover:text-[#43b14b] transition-colors duration-200 ease-in-out">Văn
                         bản
                         pháp
                         luật</a>
-                    <a class="font-medium hover:text-[#43b14b]" href="{{ route('contact') }}">Liên
+                    <a class="font-medium !no-underline decoration-none border-b-0 focus:outline-none
+          hover:text-[#43b14b] transition-colors duration-200 ease-in-out"
+                        href="{{ route('contact') }}">Liên
                         hệ</a>
                 </nav>
             </div>
@@ -236,13 +249,13 @@
                 <div>
                     <h4 class="font-semibold text-white">Thông tin thêm</h4>
                     <ul class="mt-4 space-y-2 text-sm">
-                        <li><a class="hover:underline" href="/">Trang
+                        <li><a class="!no-underline" href="/">Trang
                                 chủ</a></li>
-                        <li><a class="hover:underline" href="{{ route('introduce') }}">Giới
+                        <li><a class="!no-underline" href="{{ route('introduce') }}">Giới
                                 thiệu</a></li>
-                        <li><a class="hover:underline" href="{{ route('category_posts', 'tin-tuc') }}">Tin
+                        <li><a class="!no-underline" href="{{ route('category_posts', 'tin-tuc') }}">Tin
                                 tức</a></li>
-                        <li><a class="hover:underline" href="{{ route('contact') }}">Liên
+                        <li><a class="!no-underline" href="{{ route('contact') }}">Liên
                                 hệ</a></li>
                     </ul>
                 </div>
