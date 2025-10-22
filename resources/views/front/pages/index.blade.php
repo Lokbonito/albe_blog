@@ -269,22 +269,17 @@
         <section class="mt-10 grid lg:grid-cols-3 gap-6">
             {{-- Cột bên trái (Video) --}}
             <div class="lg:col-span-2 bg-white border rounded-2xl shadow-sm overflow-hidden">
-                <div class="relative group">
-                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2069&auto=format&fit=crop"
-                        class="w-full h-72 object-cover" alt="Nhóm chuyên gia đang họp bàn về công việc">
-                    <button
-                        class="absolute inset-0 m-auto w-16 h-16 rounded-full bg-white/90 text-[#43b14b] shadow-lg group-hover:scale-110 transition-transform flex items-center justify-center"
-                        aria-label="Play Video">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 ml-1" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h2 class="font-semibold text-lg">Lộ trình học rõ ràng, giảng viên tận tâm</h2>
-                    <p class="text-slate-600 text-sm mt-1">Giảng viên kinh nghiệm, bài tập thực tế, hỗ trợ 1-1 trong suốt
-                        quá trình học.</p>
+                <div class="relative group aspect-video rounded-2xl overflow-hidden cursor-pointer" id="youtube-player"
+                    data-video-id="F-hLOvn-iAc">
+                    <img class="w-full h-full object-cover transition duration-300 group-hover:brightness-75"
+                        src="http://i3.ytimg.com/vi/F-hLOvn-iAc/hqdefault.jpg" alt="Video thumbnail">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="bg-green-500 rounded-full p-4 transition-transform duration-300 group-hover:scale-110">
+                            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -299,13 +294,10 @@
                     <li class="flex gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-[#43b14b]"></span><span>Cam kết đầu
                             ra – Học lại miễn phí</span></li>
                 </ul>
-                {{-- Đẩy nút này xuống dưới cùng --}}
-                <a href="#"
-                    class="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#43b14b] text-white font-semibold hover:bg-opacity-90 transition">
-                    Tư vấn khoá học
-                </a>
             </div>
         </section>
+
+
 
         {{-- Section 4: Services --}}
         <section class="mt-12">
@@ -316,9 +308,9 @@
                     <div class="max-w-7xl mx-auto px-4 py-12">
                         <div class="flex flex-wrap gap-4 justify-between items-center">
                             <h2 class="text-2xl md:text-3xl font-bold text-white uppercase">Dịch vụ ALBE</h2>
-                            <a href="#"
+                            {{-- <a href="#"
                                 class="text-sm md:text-base text-white border-b-2 border-white hover:text-[#4AB14B] hover:border-[#4AB14B] transition-colors duration-300">Xem
-                                tất cả</a>
+                                tất cả</a> --}}
                         </div>
                         <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-6">
                             @foreach ($services as $service)
@@ -356,3 +348,24 @@
         </section>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const player = document.getElementById("youtube-player");
+            player.addEventListener("click", function() {
+                const videoId = this.dataset.videoId;
+                const iframe = document.createElement("iframe");
+                iframe.setAttribute("src",
+                    `https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0&showinfo=0`
+                );
+                iframe.setAttribute("frameborder", "0");
+                iframe.setAttribute("allow", "autoplay; encrypted-media");
+                iframe.setAttribute("allowfullscreen", "true");
+                iframe.classList.add("w-full", "h-full", "rounded-2xl");
+                this.innerHTML = "";
+                this.appendChild(iframe);
+            });
+        });
+    </script>
+@endpush

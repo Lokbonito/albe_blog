@@ -127,22 +127,21 @@
 
                     {!! webtutorials_dropdown() !!}
 
-                    <a href="{{ route('category_posts', 'tin-tuc') }}"
-                        class="hover:text-brand-600 font-medium hover:text-[#43b14b]">Tin
+                    <a href="{{ route('category_posts', 'tin-tuc') }}" class="font-medium hover:text-[#43b14b]">Tin
                         tức</a>
                     <a href="{{ route('category_posts', 'van-ban-phap-luat') }}"
-                        class="hover:text-brand-600 font-medium hover:text-[#43b14b]">Văn
+                        class="font-medium hover:text-[#43b14b]">Văn
                         bản
                         pháp
                         luật</a>
-                    <a class="hover:text-brand-600 font-medium hover:text-[#43b14b]" href="{{ route('contact') }}">Liên
+                    <a class="font-medium hover:text-[#43b14b]" href="{{ route('contact') }}">Liên
                         hệ</a>
                 </nav>
             </div>
             <div id="drawer" class="hidden md:hidden pb-3 border-t border-slate-200">
                 <div class="pt-3 grid gap-2">
                     <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="/">Trang chủ</a>
-                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="#">Giới thiệu</a>
+                    <a class="px-3 py-2 rounded-lg hover:bg-slate-50" href="{{ route('introduce') }}">Giới thiệu</a>
                     {{-- <details class="px-3 py-2 rounded-lg">
                         <summary class="cursor-pointer list-none">Dịch
                             vụ</summary>
@@ -297,7 +296,7 @@
     <button id="backToTop"
         class="fixed bottom-6 right-6 hidden items-center justify-center w-10 h-10 rounded-full bg-brand-600 text-white shadow-soft hover:bg-brand-700"
         aria-label="Về đầu trang">↑</button>
-
+    @stack('script')
     <script src="/front/js/script.js" defer></script>
     <!-- Tailwind CDN -->
     <script>

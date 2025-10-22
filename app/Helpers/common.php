@@ -87,7 +87,7 @@ if (!function_exists('navigations')) {
         if (count($categories) > 0) {
             foreach ($categories as $item) {
                 $navigations_html .= '
-                        <a class="hover:text-brand-600 font-medium hover:text-[#43b14b]" href="' . route('category_posts', $item->slug) . '">' . $item->name . '</a>
+                        <a class="font-medium hover:text-[#43b14b]" href="' . route('category_posts', $item->slug) . '">' . $item->name . '</a>
                 ';
             }
         }
@@ -102,19 +102,19 @@ if (!function_exists('appdevs_dropdown')) {
         $html = '';
 
         // Lấy parent category có tên APP DEVS
-        $appDevs = ParentCategory::where('name', 'DỊCH VỤ')
+        $service = ParentCategory::where('name', 'DỊCH VỤ')
             ->whereHas('children', function ($q) {
                 $q->whereHas('posts');
             })
             ->first();
 
-        if ($appDevs) {
+        if ($service) {
             $html .= '
                 <div class="relative group">
                     <button
                         class="font-medium inline-flex items-center gap-1 py-2 hover:text-[#43b14b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#43b14b]/40 rounded-lg uppercase whitespace-nowrap"
                         aria-haspopup="true">
-                        ' . $appDevs->name . '
+                        ' . $service->name . '
                         <svg class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
                             viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"
@@ -128,8 +128,7 @@ if (!function_exists('appdevs_dropdown')) {
                         <div
                             class="min-w-[260px] bg-white border border-slate-200 border-t-2 border-t-green-400 shadow-xl ring-1 ring-black/5 p-2 text-sm rounded-lg">
             ';
-
-            foreach ($appDevs->children as $category) {
+            foreach ($service->children as $category) {
                 if ($category->posts->count() > 0) {
                     $html .= '
                         <a href="' . route('category_posts', $category->slug) . '"
@@ -138,14 +137,12 @@ if (!function_exists('appdevs_dropdown')) {
                         '</a>';
                 }
             }
-
             $html .= '
                         </div>
                     </div>
                 </div>
             ';
         }
-
         return $html;
     }
 }
