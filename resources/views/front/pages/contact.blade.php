@@ -41,7 +41,6 @@
                     CÔNG TY TNHH DỊCH VỤ CHUYÊN NGHIỆP ALBE
                 </h1>
 
-                <!-- Gạch xanh ngắn -->
                 <div class="w-16 h-1 bg-green-600 mt-2 rounded"></div>
             </div>
         </header>
@@ -121,9 +120,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="phoneNumber" class="block text-sm font-semibold text-gray-800 mb-2">Phone Number
+                    <label for="phoneNumber" class="block text-sm font-semibold text-gray-800 mb-2">Số điện thoại
                         <span class="text-red-500">*</span></label>
-                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="Phone Number"
+                    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="Số điện thoại"
                         class="block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-custom-green focus:border-transparent transition"
                         value="{{ old('phoneNumber') }}">
                     @error('phoneNumber')
@@ -143,9 +142,9 @@
                 </div>
 
                 <div class="md:col-span-2 form-group">
-                    <label for="message" class="block text-sm font-semibold text-gray-800 mb-2">Description <span
+                    <label for="message" class="block text-sm font-semibold text-gray-800 mb-2">Tin nhắn <span
                             class="text-red-500">*</span></label>
-                    <textarea name="message" id="message" placeholder="Message" rows="6"
+                    <textarea name="message" id="message" placeholder="Tin nhắn" rows="6"
                         class="block w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-custom-green focus:border-transparent transition">{{ old('message') }}</textarea>
                     @error('message')
                         <span class="text-danger ml-1">{{ $message }}</span>
@@ -154,9 +153,10 @@
 
                 <div class="md:col-span-2">
                     <button type="submit"
-                        class="w-full bg-[#43ba32] text-white font-bold py-4 px-4 rounded-lg shadow-md hover:bg-green-500 transition-colors duration-200">
-                        Submit
+                        class="block mx-auto w-1/2 bg-[#43ba32] text-white font-bold py-4 px-4 rounded-xl shadow-md hover:bg-green-500 transition-colors duration-200">
+                        Gửi
                     </button>
+
                 </div>
             </div>
         </form>

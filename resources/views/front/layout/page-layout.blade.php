@@ -50,7 +50,7 @@
 
     <div class="bg-[#4ab14b] text-white">
         <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between items-center py-2 text-sm">
+            <div class="flex flex-wrap justify-between items-cen    ter py-2 text-sm">
 
                 <div class="flex items-center space-x-2 mb-2 md:mb-0">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
