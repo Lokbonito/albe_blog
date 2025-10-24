@@ -274,16 +274,41 @@
                 </div>
             </div>
 
-            {{-- Cột bên phải (Điểm nổi bật) -- ĐÃ SỬA --}}
             <div class="bg-white border rounded-2xl shadow-sm p-5 flex flex-col">
-                <h2 class="font-semibold text-lg text-gray-800">Điểm nổi bật</h2>
+                <span class="flex gap-3">
+                    <span class="mt-1.5 h-6 w-1 rounded-full bg-[#43b14b]"></span>
+                    <h2 class="font-semibold text-2xl text-gray-800">Thông tin về ALBE</h2>
+                </span>
+                <span class="mt-3">
+                    <p class="font-medium text-base text-gray-800">ALBE tiền thân là một trung tâm dịch vụ kế toán “TRUNG
+                        TÂM TƯ VẤN THUẾ - KẾ TOÁN ALBE” từ tháng 11/2007.</p>
+                    <p class="mt-3 font-normal text-xs text-gray-600">Đến ngày 3/10/2011 thành lập “CÔNG TY CỔ PHẦN DỊCH VỤ
+                        ĐÀO TẠO CHUYÊN NGHIỆP ALBE“ và sau đó đổi thành “ CÔNG TY TNHH DỊCH VỤ CHUYÊN NGHIỆP ALBE".
+                    </p>
+                </span>
                 <ul class="mt-3 space-y-3">
-                    <li class="flex gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-[#43b14b]"></span><span>Giáo trình
-                            thực chiến, cập nhật theo luật mới</span></li>
-                    <li class="flex gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-[#43b14b]"></span><span>Hỗ trợ việc
-                            làm & thực tập</span></li>
-                    <li class="flex gap-3"><span class="mt-1.5 h-2 w-2 rounded-full bg-[#43b14b]"></span><span>Cam kết đầu
-                            ra – Học lại miễn phí</span></li>
+                    <li class="flex gap-3">
+                        <span class="mt-1.5 h-3 w-1 rounded-full bg-[#43b14b]"></span>
+                        <a href="{{ route('introduce') }}"
+                            class="hover:text-[#43b14b] transition-all duration-300 ease-in-out !no-underline">Giới thiệu
+                        </a>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="mt-1.5 h-3 w-1 rounded-full bg-[#43b14b]"></span>
+                        <a href="{{ route('category_posts', 'dao-tao') }}"
+                            class="hover:text-[#43b14b] transition-all duration-300 ease-in-out !no-underline">Đào tạo</a>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="mt-1.5 h-3 w-1 rounded-full bg-[#43b14b]"></span>
+                        <a href="{{ route('category_posts', 'tin-tuc') }}"
+                            class="hover:text-[#43b14b] transition-all duration-300 ease-in-out !no-underline">Tin tức</a>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="mt-1.5 h-3 w-1 rounded-full bg-[#43b14b]"></span>
+                        <a href="{{ route('category_posts', 'van-ban-phap-luat') }}"
+                            class="hover:text-[#43b14b] transition-all duration-300 ease-in-out !no-underline">Văn bản pháp
+                            luật</a>
+                    </li>
                 </ul>
             </div>
         </section>
