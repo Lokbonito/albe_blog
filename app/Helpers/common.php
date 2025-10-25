@@ -146,9 +146,6 @@ if (!function_exists('services_dropdown')) {
     }
 }
 
-
-//=========================WORKING HERE=========================
-
 if (!function_exists('services_dropdown_mobile')) {
     function services_dropdown_mobile()
     {
