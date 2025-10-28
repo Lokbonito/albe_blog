@@ -90,24 +90,26 @@
         <section class="container mx-auto px-4 py-8">
             <h3 class="text-2xl font-bold mb-6 text-slate-800">Bài viết liên quan</h3>
 
-            <div class="relative">
+            {{-- 
+          1. Thêm x-data ở đây.
+          Chúng ta đếm số lượng "chunk" (slide) bằng PHP.
+        --}}
+            <div class="relative" x-data="{
+                currentSlide: 0,
+                totalSlides: {{ $relatedPosts->chunk(3)->count() }}
+            }">
 
                 <main class="overflow-hidden rounded-lg">
-                    <div id="sliderTrack" class="flex transition-transform duration-500 ease-in-out">
+                    <div id="sliderTrack" class="flex transition-transform duration-500 ease-in-out" {{-- 2. Thêm :style để di chuyển track --}}
+                        :style="'transform: translateX(-' + currentSlide * 100 + '%)'">
 
-                        {{-- 
-                        Sử dụng chunk(2) để nhóm các bài viết thành từng cặp.
-                        Mỗi cặp sẽ là một "slide".
-                    --}}
                         @foreach ($relatedPosts->chunk(3) as $postChunk)
                             <div class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-1">
-
-                                {{-- Lặp qua 2 bài viết trong mỗi slide --}}
+                                {{-- Lặp qua các bài viết trong chunk --}}
                                 @foreach ($postChunk as $post)
                                     <article
                                         class="bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col overflow-hidden group">
                                         <a href="{{ route('read_post', $post->slug) }}" class="block overflow-hidden">
-                                            {{-- Giả sử bạn có một trường 'image_url' hoặc tương tự trong model Post --}}
                                             <img src="/images/posts/{{ $post->featured_image }}" alt="{{ $post->title }}"
                                                 class="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300">
                                         </a>
@@ -134,14 +136,15 @@
                                         </div>
                                     </article>
                                 @endforeach
-
                             </div>
                         @endforeach
-
                     </div>
                 </main>
 
-                <button id="prevBtn"
+                {{-- 3. Cập nhật nút Prev --}}
+                <button id="prevBtn" {{-- Giảm currentSlide, không cho nhỏ hơn 0 --}} @click="currentSlide = Math.max(0, currentSlide - 1)"
+                    {{-- Vô hiệu hóa nút khi ở slide đầu tiên --}} :disabled="currentSlide === 0" {{-- Thêm class 'opacity-50' khi bị vô hiệu hóa --}}
+                    :class="{ 'opacity-50 cursor-not-allowed': currentSlide === 0 }"
                     class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg p-2 rounded-full hover:scale-110 transition-transform focus:outline-none -ml-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-700" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
@@ -149,7 +152,11 @@
                     </svg>
                 </button>
 
-                <button id="nextBtn"
+                {{-- 4. Cập nhật nút Next --}}
+                <button id="nextBtn" {{-- Tăng currentSlide, không cho lớn hơn tổng số slide - 1 --}}
+                    @click="currentSlide = Math.min(totalSlides - 1, currentSlide + 1)" {{-- Vô hiệu hóa nút khi ở slide cuối cùng --}}
+                    :disabled="currentSlide === totalSlides - 1" {{-- Thêm class 'opacity-50' khi bị vô hiệu hóa --}}
+                    :class="{ 'opacity-50 cursor-not-allowed': currentSlide === totalSlides - 1 }"
                     class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg p-2 rounded-full hover:scale-110 transition-transform focus:outline-none -mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-700" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">

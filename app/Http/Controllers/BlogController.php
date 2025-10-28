@@ -45,7 +45,7 @@ class BlogController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        $posts = Post::where('category', $category->id)->paginate(6);
+        $posts = Post::where('category', $category->id)->orderBy('created_at', 'desc')->paginate(6);
 
         $title = 'Bài viết trong:' . $category->name;
         $description = "Khám phá các bài viết mới nhất thuộc danh mục " . $category->name . ", nơi bạn có thể cập nhật bài viết, góc nhìn và hướng dẫn hữu ích.";
