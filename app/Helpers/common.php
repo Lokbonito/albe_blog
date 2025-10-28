@@ -8,6 +8,7 @@ use App\Models\Slide;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\SiteSocialLink;
+use Illuminate\Support\Facades\DB;
 
 
 if (!function_exists('settings')) {
@@ -304,24 +305,30 @@ if (!function_exists('words')) {
 function footer_services_link()
 {
     $html = '';
-    $service = ParentCategory::where('name', 'DỊCH VỤ')
-        ->whereHas('children', function ($q) {
-            $q->whereHas('posts');
-        })
-        ->first();
+
+    // 1. Tìm danh mục cha (không phân biệt hoa/thường)
+    $service = ParentCategory::where(DB::raw('LOWER(name)'), 'dịch vụ')->first();
 
     if ($service) {
-        $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
-                <ul class="mt-4 space-y-2 text-sm">';
+        // 2. Tải CÁC DANH MỤC CON mà CÓ bài viết
+        $categoriesWithPosts = $service->children()
+            ->whereHas('posts')
+            ->get();
 
-        foreach ($service->children as $category) {
-            if ($category->posts->count() > 0) {
+        // Chỉ hiển thị nếu thực sự có danh mục con
+        if ($categoriesWithPosts->count() > 0) {
+            $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
+                      <ul class="mt-4 space-y-2 text-sm">';
+
+            foreach ($categoriesWithPosts as $category) {
+                // Không cần if count() nữa vì query đã lọc rồi
                 $html .= '
-                            <li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
-                    ';
+                    <li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
+                ';
             }
+
+            $html .= '</ul>';
         }
-        $html .= '</ul>';
     }
     return $html;
 }
