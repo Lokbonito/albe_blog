@@ -301,40 +301,32 @@ if (!function_exists('words')) {
     }
 }
 
-function footer_services_link()
-{
-    $html = '';
-    $service = ParentCategory::whereRaw('LOWER(TRIM(name)) = ?', ['dịch vụ'])
-        ->whereHas('children', function ($q) {
-            $q->whereHas('posts');
-        })
-        ->first();
+if (!function_exists('footer_services_link')) {
+    function footer_services_link()
+    {
+        $html = '';
+        $service = ParentCategory::where('name', 'DỊCH VỤ')
+            ->whereHas('children', function ($q) {
+                $q->whereHas('posts');
+            })
+            ->first();
 
+        if ($service) {
+            $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
+                <ul class="mt-4 space-y-2 text-sm">';
 
-    // Debug xem có dữ liệu hay không
-    if (!$service) {
-        return '<p style="color:red;">Không tìm thấy ParentCategory tên "DỊCH VỤ"</p>';
-    }
-
-    $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
-        <ul class="mt-4 space-y-2 text-sm">';
-
-    $count = 0;
-    foreach ($service->children as $category) {
-        if ($category->posts->count() > 0) {
-            $count++;
-            $html .= '<li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>';
+            foreach ($service->children as $category) {
+                if ($category->posts->count() > 0) {
+                    $html .= '
+                            <li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
+                    ';
+                }
+            }
+            $html .= '</ul>';
         }
+        return $html;
     }
-
-    if ($count == 0) {
-        $html .= '<li style="color:orange;">Không có category con nào có bài viết</li>';
-    }
-
-    $html .= '</ul>';
-    return $html;
 }
-
 
 /**
  * CALCULATE POST READING DURATION
