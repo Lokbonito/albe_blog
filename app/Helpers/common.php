@@ -128,7 +128,7 @@ if (!function_exists('services_dropdown')) {
                             class="min-w-[260px] bg-white border border-slate-200 border-t-2 border-t-green-400 shadow-xl ring-1 ring-black/5 p-2 text-sm rounded-lg">
             ';
             foreach ($service->children as $category) {
-                if ($category->posts->count() > 0) {
+                if ($category) {
                     $html .= '
                         <a href="' . route('category_posts', $category->slug) . '"
                             class="block px-3 py-2 font-medium text-slate-500 hover:text-[#43b14b] transition-colors duration-200 ease-in-out !no-underline normal-case">'
@@ -175,7 +175,7 @@ if (!function_exists('services_dropdown_mobile')) {
                 ';
 
             foreach ($service->children as $category) {
-                if ($category->posts->count() > 0) {
+                if ($category) {
                     $html .= '
                     <a href="' . route('category_posts', $category->slug) . '" class="block py-1.5 text-slate-600 hover:text-[#43b14b] transition-all duration-200">' . $category->name . '</a>';
                 }
