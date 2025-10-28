@@ -301,31 +301,29 @@ if (!function_exists('words')) {
     }
 }
 
-if (!function_exists('footer_services_link')) {
-    function footer_services_link()
-    {
-        $html = '';
-        $service = ParentCategory::where('name', 'DỊCH VỤ')
-            ->whereHas('children', function ($q) {
-                $q->whereHas('posts');
-            })
-            ->first();
+function footer_services_link()
+{
+    $html = '';
+    $service = ParentCategory::where('name', 'DỊCH VỤ')
+        ->whereHas('children', function ($q) {
+            $q->whereHas('posts');
+        })
+        ->first();
 
-        if ($service) {
-            $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
+    if ($service) {
+        $html .= '<h4 class="font-semibold text-white">' . $service->name . '</h4>
                 <ul class="mt-4 space-y-2 text-sm">';
 
-            foreach ($service->children as $category) {
-                if ($category->posts->count() > 0) {
-                    $html .= '
+        foreach ($service->children as $category) {
+            if ($category->posts->count() > 0) {
+                $html .= '
                             <li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
                     ';
-                }
             }
-            $html .= '</ul>';
         }
-        return $html;
+        $html .= '</ul>';
     }
+    return $html;
 }
 
 /**

@@ -322,9 +322,7 @@
                     <div class="max-w-7xl mx-auto px-4 py-12">
                         <div class="flex flex-wrap gap-4 justify-between items-center">
                             <h2 class="text-2xl md:text-3xl font-bold text-white uppercase">Dịch vụ ALBE</h2>
-                            {{-- <a href="#"
-                                class="text-sm md:text-base text-white border-b-2 border-white hover:text-[#4AB14B] hover:border-[#4AB14B] transition-colors duration-300">Xem
-                                tất cả</a> --}}
+                            
                         </div>
                         <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-6">
                             @foreach ($services as $service)
