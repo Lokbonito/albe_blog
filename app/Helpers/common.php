@@ -304,11 +304,12 @@ if (!function_exists('words')) {
 function footer_services_link()
 {
     $html = '';
-    $service = ParentCategory::where('name', 'DỊCH VỤ')
+    $service = ParentCategory::whereRaw('LOWER(TRIM(name)) = ?', ['dịch vụ'])
         ->whereHas('children', function ($q) {
             $q->whereHas('posts');
         })
         ->first();
+
 
     // Debug xem có dữ liệu hay không
     if (!$service) {
