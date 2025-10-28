@@ -316,7 +316,7 @@ if (!function_exists('footer_services_link')) {
                 <ul class="mt-4 space-y-2 text-sm">';
 
             foreach ($service->children as $category) {
-                if ($category->posts->count() > 0) {
+                if ($category) {
                     $html .= '
                             <li><a class="!no-underline" href="' . route('category_posts', $category->slug) . '">' . $category->name . '</a></li>
                     ';
